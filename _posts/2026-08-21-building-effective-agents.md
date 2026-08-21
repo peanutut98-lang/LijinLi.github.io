@@ -7,7 +7,7 @@ tags:
   - Agent
   - Workflow
 ---
-<!--\> 原文：[Building Effective Agents](https://www.anthropic.com/engineering/building-effective-agents)-->  
+<!-- 原文：[Building Effective Agents](https://www.anthropic.com/engineering/building-effective-agents) -->
 
 <!--\> 来源：Anthropic Engineering-->  
 
