@@ -110,3 +110,5 @@ https://www.anthropic.com/research/swe-bench-sonnet
 https://en.wikipedia.org/wiki/Poka-yoke
 
 https://console.anthropic.com/workbench
+
+byebye～
