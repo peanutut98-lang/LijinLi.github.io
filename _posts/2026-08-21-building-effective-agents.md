@@ -53,13 +53,13 @@ Anthropic在具体的架构上做了区分：workflow和agent
 
 提示链将任务分解为一系列步骤，其中每个 LLM 调用都会处理前一个调用的输出。您可以对任何中间步骤添加程序化检查（参见下图中的“gate”），以确保流程仍在按计划进行。
 
-![image-20260821152612821](/Users/lijinli/Library/Application Support/typora-user-images/image-20260821152612821.png)
+![image-20260821152612821]({{ '/images/posts/building-effective-agents/image-20260821152612821.png' | relative_url }})
 
 2. 路由
 
 路由机制对输入进行分类，并将其导向特定的后续任务。
 
-![image-20260821152656008](/Users/lijinli/Library/Application Support/typora-user-images/image-20260821152656008.png)
+![image-20260821152656008]({{ '/images/posts/building-effective-agents/image-20260821152656008.png' | relative_url }})
 
 3. 并行
 
@@ -68,13 +68,13 @@ Anthropic在具体的架构上做了区分：workflow和agent
 - **分段**：将一项任务分解成若干个可以并行运行的独立子任务。
 - **投票法：**多次运行同一任务以获得不同的输出结果。
 
-![image-20260821152739756](/Users/lijinli/Library/Application Support/typora-user-images/image-20260821152739756.png)
+![image-20260821152739756]({{ '/images/posts/building-effective-agents/image-20260821152739756.png' | relative_url }})
 
 4. Orchestrator-workers
 
 中央 LLM 动态地分解任务，将任务委派给工作者 LLM，并综合它们的结果。
 
-![image-20260821152948604](/Users/lijinli/Library/Application Support/typora-user-images/image-20260821152948604.png)
+![image-20260821152948604]({{ '/images/posts/building-effective-agents/image-20260821152948604.png' | relative_url }})
 
 **这个在我看来和multi-agent的supervisor模式几乎没有任何区别**，但汇总完codex的回答，这两者的区别可能在于：如果中央 Orchestrator 是只负责一次拆解和一次汇总，而multiagent是进入持续循环，性质就发生了变化。例如，多agent系统的流程可能是：理解目标→ 制定计划→ 创建 Worker→ 查看 Worker 结果→ 判断信息是否充分→ 失败时重新委派→ 必要时调用其他工具→ 修改计划→ 决定继续还是结束。
 
@@ -82,7 +82,7 @@ Anthropic在具体的架构上做了区分：workflow和agent
 
 在评估器-优化器工作流程中，一个 LLM 调用生成响应，而另一个调用则提供评估和反馈，形成一个循环。
 
-![image-20260821153610087](/Users/lijinli/Library/Application Support/typora-user-images/image-20260821153610087.png)
+![image-20260821153610087]({{ '/images/posts/building-effective-agents/image-20260821153610087.png' | relative_url }})
 
 Evaluator 只是判断质量，确认是否需要进一步多轮的分析和搜索，而不是能够自由决定下一步调用什么工具、怎样修改计划、增加哪些步骤（这就是agent）
 
@@ -90,7 +90,7 @@ Evaluator 只是判断质量，确认是否需要进一步多轮的分析和搜�
 
 智能体可以处理复杂的任务，但它们的实现通常很简单。它们通常只是基于环境反馈循环使用工具的逻辑逻辑模型（LLM）。因此，**清晰周全地设计工具集及其文档至关重要**
 
-![image-20260821154051967](/Users/lijinli/Library/Application Support/typora-user-images/image-20260821154051967.png)
+![image-20260821154051967]({{ '/images/posts/building-effective-agents/image-20260821154051967.png' | relative_url }})
 
 anthropic文档里有一句话，我特别的喜欢，是“工具定义和规范应该与整体提示一样，得到同等的提示工程重视。” 对于工具的定义我们应当设计的足够清晰和明确，以帮助agent对于工具的选择和使用。
 
