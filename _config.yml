@@ -13,9 +13,9 @@ title                    : "Lijin Li"
 title_separator          : "-"
 name                     : &name "Lijin Li"
 description              : &description "记录我对 AI、LLM、Agent 与软件工程的学习和思考"
-url                      : "https://peanutut98-lang.github.io"
-baseurl                  : ""
-repository               : "peanutut98-lang/peanutut98-lang.github.io"
+url        : "https://peanutut98-lang.github.io"
+baseurl    : "/LijinLi.github.io"
+repository : "peanutut98-lang/LijinLi.github.io"
 
 # Site Author - The following control what appear as part of the author content on the side bar.
 #               If a field is blank the icon and link will not appear, otherwise it will be shown.
