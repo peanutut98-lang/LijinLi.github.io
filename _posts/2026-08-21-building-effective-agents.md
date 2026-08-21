@@ -1,3 +1,12 @@
+---
+title: "Building Effective Agents：Workflow 与 Agent"
+date: 2026-08-21
+permalink: /posts/2026/08/building-effective-agents/
+tags:
+  - LLM
+  - Agent
+  - Workflow
+---
 <!--\> 原文：[Building Effective Agents](https://www.anthropic.com/engineering/building-effective-agents)-->  
 
 <!--\> 来源：Anthropic Engineering-->  
