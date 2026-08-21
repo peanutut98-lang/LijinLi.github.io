@@ -53,7 +53,7 @@ Anthropic在具体的架构上做了区分：workflow和agent
 
 提示链将任务分解为一系列步骤，其中每个 LLM 调用都会处理前一个调用的输出。您可以对任何中间步骤添加程序化检查（参见下图中的“gate”），以确保流程仍在按计划进行。
 
-![image-20260821152612821]({{ '/images/posts/building-effective-agents/image-20260821152612821.png' | relative_url }})
+<img src="https://peanutut98-lang.github.io/LijinLi.github.io/images/posts/building-effective-agents/image-20260821152612821.png" alt="提示链">
 
 ### 2. 路由
 
