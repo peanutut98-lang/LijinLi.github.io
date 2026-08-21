@@ -49,34 +49,36 @@ Anthropic在具体的架构上做了区分：workflow和agent
 
 ## 三、五种常见的 Workflow
 
-1. 提示链
+### 1. 提示链
 
 提示链将任务分解为一系列步骤，其中每个 LLM 调用都会处理前一个调用的输出。您可以对任何中间步骤添加程序化检查（参见下图中的“gate”），以确保流程仍在按计划进行。
 
 ![image-20260821152612821]({{ '/images/posts/building-effective-agents/image-20260821152612821.png' | relative_url }})
 
-2. 路由
+### 2. 路由
 
 路由机制对输入进行分类，并将其导向特定的后续任务。
 
 ![image-20260821152656008]({{ '/images/posts/building-effective-agents/image-20260821152656008.png' | relative_url }})
 
-3. 并行
+### 3. 并行
 
-多层级管理（LLM）有时可以同时处理同一任务，并通过程序自动汇总其输出。这种工作流程（即并行化）主要体现在两个方面：
+多个 LLM 有时可以同时处理同一任务，并通过程序自动汇总其输出。这种工作流程主要体现在两个方面：
 
 - **分段**：将一项任务分解成若干个可以并行运行的独立子任务。
-- **投票法：**多次运行同一任务以获得不同的输出结果。
+- **投票法**：多次运行同一任务，以获得不同的输出结果。
 
 ![image-20260821152739756]({{ '/images/posts/building-effective-agents/image-20260821152739756.png' | relative_url }})
 
-4. Orchestrator-workers
+### 4. Orchestrator–Workers
 
-中央 LLM 动态地分解任务，将任务委派给工作者 LLM，并综合它们的结果。
+中央 LLM 动态地分解任务，将任务委派给 Worker LLM，并综合它们的结果。
 
 ![image-20260821152948604]({{ '/images/posts/building-effective-agents/image-20260821152948604.png' | relative_url }})
 
-**这个在我看来和multi-agent的supervisor模式几乎没有任何区别**，但汇总完codex的回答，这两者的区别可能在于：如果中央 Orchestrator 是只负责一次拆解和一次汇总，而multiagent是进入持续循环，性质就发生了变化。例如，多agent系统的流程可能是：理解目标→ 制定计划→ 创建 Worker→ 查看 Worker 结果→ 判断信息是否充分→ 失败时重新委派→ 必要时调用其他工具→ 修改计划→ 决定继续还是结束。
+**这个模式在我看来和 Multi-agent 的 Supervisor 模式几乎没有区别。**
+
+但经过进一步梳理，我认为区别可能在于：如果中央 Orchestrator 只负责一次拆解和一次汇总，那么系统仍然在执行一个预先规定的 Workflow；如果它可以进入持续循环，根据 Worker 的结果重新委派任务、调用其他工具、修改计划并决定什么时候结束，那么它就更接近 Agent。例如，多agent系统的流程可能是：理解目标→ 制定计划→ 创建 Worker→ 查看 Worker 结果→ 判断信息是否充分→ 失败时重新委派→ 必要时调用其他工具→ 修改计划→ 决定继续还是结束。
 
 5. Evaluator-optimizer
 
