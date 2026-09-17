@@ -622,7 +622,138 @@ td > code {
 }
 
 .pagination--pager + .pagination--pager {
-  margin-left: 0.5rem;
+  margin-left: 0;
+}
+
+.pagination--posts {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.85rem;
+  width: 100%;
+}
+
+.pagination--posts .pagination--pager {
+  display: flex;
+  float: none;
+  width: 100%;
+  min-height: 94px;
+  padding: 1rem 1.15rem;
+  gap: 0.8rem;
+  background: var(--animal-bg-content);
+  border-color: #e4cf9f;
+  border-radius: var(--animal-radius-lg);
+  text-align: left;
+}
+
+.pagination--posts .pagination--pager-next {
+  text-align: right;
+}
+
+.pagination--pager-copy {
+  display: flex;
+  min-width: 0;
+  flex: 1;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.pagination--pager-label {
+  color: var(--animal-primary-active);
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+}
+
+.pagination--pager-title {
+  display: -webkit-box;
+  overflow: hidden;
+  color: var(--animal-text);
+  font-size: 0.92rem;
+  font-weight: 800;
+  line-height: 1.45;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.pagination--pager-icon {
+  display: inline-flex;
+  width: 34px;
+  height: 34px;
+  flex: 0 0 34px;
+  align-items: center;
+  justify-content: center;
+  color: #fffdf4;
+  background: var(--animal-primary);
+  border-radius: 50%;
+  font-size: 1.1rem;
+  line-height: 1;
+}
+
+.pagination--posts .pagination--pager.disabled {
+  opacity: 0.52;
+}
+
+.pagination--posts .pagination--pager.disabled .pagination--pager-icon {
+  color: var(--animal-text-muted);
+  background: var(--animal-bg-disabled);
+}
+
+.page__related {
+  float: none;
+  width: 100%;
+  margin: 2rem 0 0;
+  padding: 1.4rem 0 0;
+  border-top: 1px solid var(--global-border-color);
+}
+
+.page__related-title {
+  display: inline-flex;
+  margin: 0 0 1rem;
+  padding: 0.45rem 1rem;
+  color: var(--animal-text);
+  background: var(--animal-primary-bg);
+  border: 1.5px dashed var(--animal-primary);
+  border-radius: var(--animal-radius-pill);
+  font-size: 0.9rem;
+  font-weight: 900;
+  letter-spacing: 0.02em;
+  text-transform: none;
+}
+
+.page__related .grid__wrapper {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.page__related .grid__item {
+  float: none;
+  width: auto;
+  margin: 0;
+}
+
+.page__related .archive__item {
+  height: 100%;
+  min-height: 150px;
+  padding: 1.05rem;
+}
+
+.page__related .archive__item-title {
+  margin: 0 0 0.65rem;
+  font-size: 1rem;
+  line-height: 1.45;
+}
+
+.page__related .page__meta,
+.page__related .page__date {
+  margin: 0.25rem 0 0;
+  font-size: 0.74rem;
+  line-height: 1.5;
+}
+
+.page__related .archive__item-excerpt,
+.page__related .archive__item-teaser {
+  display: none;
 }
 
 .toc {
@@ -647,9 +778,10 @@ thead {
 .island-heatmap-card {
   position: relative;
   margin-bottom: 2.2rem;
-  padding: 16px 24px;
+  padding: 24px 28px 22px;
   color: var(--animal-text-body);
   background: var(--animal-bg-content);
+  border: 1.5px solid #e4cf9f;
   border-radius: 20px;
   font-weight: 500;
 }
@@ -663,7 +795,7 @@ thead {
   position: relative;
   align-items: center;
   height: 2em;
-  margin-top: -0.35rem;
+  margin: 0 0 0 1.8rem;
   padding: 0 1.6em;
   color: var(--rt);
   font-family: var(--animal-font);
@@ -954,7 +1086,11 @@ thead {
   .island-heatmap-card {
     margin-left: -0.15rem;
     margin-right: -0.15rem;
-    padding: 16px;
+    padding: 20px 16px 18px;
+  }
+
+  .island-ribbon {
+    margin-left: 1.4rem;
   }
 
   .island-heatmap__heading {
@@ -963,6 +1099,11 @@ thead {
 
   .island-heatmap__hint {
     margin-top: 0.35rem;
+  }
+
+  .pagination--posts,
+  .page__related .grid__wrapper {
+    grid-template-columns: 1fr;
   }
 
   .page__title {

@@ -1,16 +1,40 @@
 {% include base_path %}
 
 {% if page.previous or page.next %}
-  <nav class="pagination">
+  <nav class="pagination pagination--posts" aria-label="文章翻页">
     {% if page.previous %}
-      <a href="{{ base_path }}{{ page.previous.url }}" class="pagination--pager" title="{{ page.previous.title | markdownify | strip_html }}">{{ site.data.ui-text[site.locale].pagination_previous | default: "Previous" }}</a>
+      <a href="{{ base_path }}{{ page.previous.url }}" class="pagination--pager pagination--pager-previous" title="{{ page.previous.title | markdownify | strip_html }}">
+        <span class="pagination--pager-icon" aria-hidden="true">←</span>
+        <span class="pagination--pager-copy">
+          <span class="pagination--pager-label">{{ site.data.ui-text[site.locale].pagination_previous | default: "Previous" }}</span>
+          <span class="pagination--pager-title">{{ page.previous.title | markdownify | strip_html }}</span>
+        </span>
+      </a>
     {% else %}
-      <a href="#" class="pagination--pager disabled">{{ site.data.ui-text[site.locale].pagination_previous | default: "Previous" }}</a>
+      <span class="pagination--pager pagination--pager-previous disabled" aria-disabled="true">
+        <span class="pagination--pager-icon" aria-hidden="true">←</span>
+        <span class="pagination--pager-copy">
+          <span class="pagination--pager-label">{{ site.data.ui-text[site.locale].pagination_previous | default: "Previous" }}</span>
+          <span class="pagination--pager-title">已经是第一篇</span>
+        </span>
+      </span>
     {% endif %}
     {% if page.next %}
-      <a href="{{ base_path }}{{ page.next.url }}" class="pagination--pager" title="{{ page.next.title | markdownify | strip_html }}">{{ site.data.ui-text[site.locale].pagination_next | default: "Next" }}</a>
+      <a href="{{ base_path }}{{ page.next.url }}" class="pagination--pager pagination--pager-next" title="{{ page.next.title | markdownify | strip_html }}">
+        <span class="pagination--pager-copy">
+          <span class="pagination--pager-label">{{ site.data.ui-text[site.locale].pagination_next | default: "Next" }}</span>
+          <span class="pagination--pager-title">{{ page.next.title | markdownify | strip_html }}</span>
+        </span>
+        <span class="pagination--pager-icon" aria-hidden="true">→</span>
+      </a>
     {% else %}
-      <a href="#" class="pagination--pager disabled">{{ site.data.ui-text[site.locale].pagination_next | default: "Next" }}</a>
+      <span class="pagination--pager pagination--pager-next disabled" aria-disabled="true">
+        <span class="pagination--pager-copy">
+          <span class="pagination--pager-label">{{ site.data.ui-text[site.locale].pagination_next | default: "Next" }}</span>
+          <span class="pagination--pager-title">已经是最后一篇</span>
+        </span>
+        <span class="pagination--pager-icon" aria-hidden="true">→</span>
+      </span>
     {% endif %}
   </nav>
 {% endif %}
