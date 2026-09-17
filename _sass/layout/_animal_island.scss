@@ -239,9 +239,17 @@ button:focus-visible {
   padding-top: 2.2rem;
 }
 
+@media screen and (min-width: $large) {
+  .masthead__inner-wrap,
+  #main,
+  .page__footer footer {
+    max-width: 1120px;
+  }
+}
+
 .page,
 .archive {
-  padding: clamp(1.25rem, 3vw, 2.4rem);
+  padding: clamp(1.2rem, 2.4vw, 1.9rem);
   background: var(--animal-surface);
   border: 1.5px solid color-mix(in srgb, var(--animal-primary) 32%, var(--animal-border));
   border-radius: var(--animal-radius-lg);
@@ -580,6 +588,50 @@ td > code {
   padding-right: 0;
 }
 
+/* Compact archive cards keep the learning-notes page easy to scan. */
+.compact__item {
+  margin-bottom: 0.75rem;
+}
+
+.compact__item .archive__item {
+  min-height: 0;
+  padding: 0.9rem 1.1rem 0.95rem;
+  border-radius: var(--animal-radius);
+}
+
+.compact__item .archive__item-title {
+  margin: 0 0 0.35rem;
+  font-size: 1.02rem;
+  line-height: 1.4;
+}
+
+.compact__item .page__meta,
+.compact__item .page__date {
+  display: inline-flex;
+  align-items: center;
+  margin: 0 0.85rem 0.2rem 0;
+  font-size: 0.72rem;
+  line-height: 1.45;
+}
+
+.compact__item .archive__item-excerpt--compact {
+  display: -webkit-box;
+  overflow: hidden;
+  margin: 0.35rem 0 0;
+  color: var(--animal-text-body);
+  font-size: 0.82rem;
+  line-height: 1.55;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.archive > .archive__subtitle {
+  min-height: 2.25rem;
+  margin: 1.45rem 0 0.75rem;
+  padding: 0.28rem 0.95rem 0.34rem;
+  font-size: 1rem;
+}
+
 .island-post-card__date {
   display: inline-block;
   margin-bottom: 0.55rem;
@@ -777,8 +829,8 @@ thead {
 /* Learning heatmap: Card + Title + Tooltip from the animal-island-ui spec. */
 .island-heatmap-card {
   position: relative;
-  margin-bottom: 2.2rem;
-  padding: 24px 28px 22px;
+  margin-bottom: 1.5rem;
+  padding: 20px 24px 18px;
   color: var(--animal-text-body);
   background: var(--animal-bg-content);
   border: 1.5px solid #e4cf9f;
@@ -870,7 +922,7 @@ thead {
   align-items: flex-end;
   justify-content: space-between;
   gap: 1rem;
-  margin: 1.25rem 0 1rem;
+  margin: 0.9rem 0 0.75rem;
 }
 
 .island-heatmap__summary,
@@ -1086,7 +1138,7 @@ thead {
   .island-heatmap-card {
     margin-left: -0.15rem;
     margin-right: -0.15rem;
-    padding: 20px 16px 18px;
+    padding: 18px 16px 16px;
   }
 
   .island-ribbon {
