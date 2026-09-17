@@ -1,13 +1,75 @@
 ---
 layout: archive
 permalink: /year-archive/
-title: "Blog posts"
+title: "学习笔记"
 author_profile: true
 redirect_from:
   - /wordpress/blog-posts/
 ---
 
 {% include base_path %}
+
+<section class="island-heatmap-card" id="learning-heatmap" aria-labelledby="learning-heatmap-title">
+  <div class="island-ribbon">
+    <span class="island-ribbon__back island-ribbon__back--left" aria-hidden="true"></span>
+    <span class="island-ribbon__fold island-ribbon__fold--left" aria-hidden="true"></span>
+    <span class="island-ribbon__front">
+      <span class="island-ribbon__text" id="learning-heatmap-title">学习足迹</span>
+    </span>
+    <span class="island-ribbon__fold island-ribbon__fold--right" aria-hidden="true"></span>
+    <span class="island-ribbon__back island-ribbon__back--right" aria-hidden="true"></span>
+  </div>
+
+  <div class="island-heatmap__heading">
+    <p class="island-heatmap__summary" data-heatmap-summary>正在整理过去一年的学习记录。</p>
+    <p class="island-heatmap__hint">悬浮或聚焦圆点可查看当天记录</p>
+  </div>
+
+  <div class="island-heatmap__scroller" tabindex="0" aria-label="过去 53 周的学习笔记热力图，可横向滚动">
+    <div class="island-heatmap__chart">
+      <div class="island-heatmap__months" data-heatmap-months aria-hidden="true"></div>
+      <div class="island-heatmap__weekdays" aria-hidden="true">
+        <span>周一</span>
+        <span></span>
+        <span>周三</span>
+        <span></span>
+        <span>周五</span>
+        <span></span>
+        <span>周日</span>
+      </div>
+      <div class="island-heatmap__grid" data-heatmap-grid role="grid" aria-label="每日学习笔记数量"></div>
+    </div>
+  </div>
+
+  <div class="island-heatmap__legend" aria-label="热力图颜色图例，从较少到较多">
+    <span>较少</span>
+    <span class="island-heatmap__legend-cell" data-level="0" aria-hidden="true"></span>
+    <span class="island-heatmap__legend-cell" data-level="1" aria-hidden="true"></span>
+    <span class="island-heatmap__legend-cell" data-level="2" aria-hidden="true"></span>
+    <span class="island-heatmap__legend-cell" data-level="3" aria-hidden="true"></span>
+    <span class="island-heatmap__legend-cell" data-level="4" aria-hidden="true"></span>
+    <span>较多</span>
+  </div>
+
+  <div class="island-heatmap__tooltip" data-heatmap-tooltip role="tooltip" hidden>
+    <span data-heatmap-tooltip-text></span>
+    <span class="island-heatmap__tooltip-arrow" aria-hidden="true"></span>
+  </div>
+</section>
+
+<script id="learning-heatmap-data" type="application/json">
+[
+  {% for post in site.posts %}
+    {
+      "date": "{{ post.date | date: '%Y-%m-%d' }}",
+      "title": {{ post.title | jsonify }},
+      "url": "{{ post.url | relative_url }}"
+    }{% unless forloop.last %},{% endunless %}
+  {% endfor %}
+]
+</script>
+<script defer src="{{ '/assets/js/learning-heatmap.js' | relative_url }}"></script>
+
 {% capture written_year %}'None'{% endcapture %}
 {% for post in site.posts %}
   {% capture year %}{{ post.date | date: '%Y' }}{% endcapture %}
